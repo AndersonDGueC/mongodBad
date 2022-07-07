@@ -11,8 +11,9 @@ favoriteFoods: [String]
 });
 
 const Person = mongoose.model('Person', personSchema);
-
-let userProgrammer = function(done) {
+/*==============create user ===========
+*/
+/*let userProgrammer = function(done) {
 	return new Person({
 	name: "FullStack Programmer",
 	age: "28",
@@ -21,3 +22,25 @@ let userProgrammer = function(done) {
 	if(error) return done(error);
 	done(null, result);
 };
+*/
+/*=====================================
+*/
+
+/*============create user and save=====
+*/
+let createAndSavePerson=(done)=>{
+	let userProgrammer=new Person({
+	name: "FullStack Programmer",
+	age: 28,
+	favoriteFoods: ["pizza", "hotdogs"]	
+	});
+	userProgrammer.save((err,data)=>{
+	if(err) return console.log(err);
+	done(null,data)
+	});
+}
+
+/*============exports function to server execution======
+*/
+exports.PersonModel=Person;
+exports.createAndSavePerson=createAndSavePerson;
