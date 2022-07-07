@@ -58,10 +58,27 @@ let createManyPeople=(arrayPeople, done)=>{
 	done(null,people);
 });
 };
+//use function find to name with model.find
 
+let findPersonByName=(personName, done)=>{
+	Person.find({name:personName},(err,personFound)=>{
+	if(err) return console.log(err)
+	done(null,personFound);
+	});
+};
+
+// use function findOne to food with model.findOne
+let findFoodByName=(food, done)=>{
+	Person.findOne({favoriteFoods:food},(err,respFood)=>{
+	if(err) return console.log(err);
+	done(null,respFood);
+	})
+}
 
 /*============exports function to server execution======
 */
 exports.PersonModel=Person;
 exports.createAndSavePerson=createAndSavePerson;
 exports.createManyPeople=createManyPeople;
+exports.findPersonByName=findPersonByName;
+exports.findFoodByName=findFoodByName;
