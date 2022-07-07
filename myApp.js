@@ -74,6 +74,13 @@ let findFoodByName=(food, done)=>{
 	done(null,respFood);
 	})
 }
+//use funcion model.findId
+let findPersonById=(personId, done)=>{
+	Person.findById(personId,(err,respId)=>{
+	if(err) return console.log(err);
+	done(null,respId);
+	})
+}
 
 /*============exports function to server execution======
 */
@@ -82,3 +89,4 @@ exports.createAndSavePerson=createAndSavePerson;
 exports.createManyPeople=createManyPeople;
 exports.findPersonByName=findPersonByName;
 exports.findFoodByName=findFoodByName;
+exports.findPersonById=findPersonById;
