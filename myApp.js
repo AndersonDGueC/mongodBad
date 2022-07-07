@@ -40,7 +40,28 @@ let createAndSavePerson=(done)=>{
 	});
 }
 
+//==================create many record with same model======
+let arrayPeople=[
+{
+name: 'edwar', age:29, favoriteFoods:['vine','chicken']
+},
+{
+name: 'javier', age:15, favoriteFoods:['meat', 'vegetable']
+},
+{
+name: 'esteban', age:32, favoriteFoods:['jamon', 'cheese']
+}];
+
+let createManyPeople=(arrayPeople, done)=>{
+	Person.create(arrayPeople,(err,people)=>{
+	if(err) return console.log(err);
+	done(null,people);
+});
+};
+
+
 /*============exports function to server execution======
 */
 exports.PersonModel=Person;
 exports.createAndSavePerson=createAndSavePerson;
+exports.createManyPeople=createManyPeople;
