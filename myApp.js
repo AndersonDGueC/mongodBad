@@ -81,6 +81,26 @@ let findPersonById=(personId, done)=>{
 	done(null,respId);
 	})
 }
+//find-edit-update documente==================
+let findEditThenSave=(personId,done)=>{
+	let foodAdd='hamburger';
+	Person.findById(personId, (err, resultId)=>{
+	if(err) return console.log(err);
+	resultId.favoriteFoods.push();
+	resultId.save((err, resultUpdate)=>{
+	if(err) return console.log(err);
+	done(null, resultUpdate);
+	});
+	});
+};
+// use function findOneAndUpdta of People model========
+let findAndUpdate=(personName, done)=>{
+	let ageToSet=20;
+	Person.findOneAndUpdate({name:personName},{age:ageToSet},{new:true},(err, updateData)=>{
+	if(err) return console.log(err);
+	done(null,updateData);
+});
+};
 
 /*============exports function to server execution======
 */
@@ -90,3 +110,5 @@ exports.createManyPeople=createManyPeople;
 exports.findPersonByName=findPersonByName;
 exports.findFoodByName=findFoodByName;
 exports.findPersonById=findPersonById;
+exports.findEditThenSave=findEditThenSave;
+exports.findAndUpdate=findAndUpdate;
