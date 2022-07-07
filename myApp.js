@@ -102,6 +102,14 @@ let findAndUpdate=(personName, done)=>{
 });
 };
 
+//use function findeByIdAndRemove
+let removeById=(personId,done)=>{
+	Person.findByIdAndRemove(personId,(err,removeId)=>{
+	if(err) return console.log(err);
+	done(null,removeId);
+	})
+}
+
 /*============exports function to server execution======
 */
 exports.PersonModel=Person;
@@ -112,3 +120,4 @@ exports.findFoodByName=findFoodByName;
 exports.findPersonById=findPersonById;
 exports.findEditThenSave=findEditThenSave;
 exports.findAndUpdate=findAndUpdate;
+exports.removeById=removeById;
