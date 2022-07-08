@@ -110,6 +110,15 @@ let removeById=(personId,done)=>{
 	})
 }
 
+//function remove all records error in version mongodb  after 4 version
+let removeManyPeople=(done)=>{
+  let nameToRemove='Mary';
+  Person.remove({name: nameToRemove},(err, response)=>{
+    if(err) return console.log(err);
+    done(null, response);
+  });
+};
+
 /*============exports function to server execution======
 */
 exports.PersonModel=Person;
@@ -121,3 +130,4 @@ exports.findPersonById=findPersonById;
 exports.findEditThenSave=findEditThenSave;
 exports.findAndUpdate=findAndUpdate;
 exports.removeById=removeById;
+exports.removeManyPeople=removeManyPeople;
