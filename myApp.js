@@ -119,6 +119,18 @@ let removeManyPeople=(done)=>{
   });
 };
 
+//execute and save query
+let queryChain=(done)=>{
+	let foodToSearch='burrito';
+	Person.find({favoriteFoods:foodToSearch})
+		.sort({name:'asc'})
+		.limit(2)
+		.select('-age')
+		.exec((err,filterResult)=>{
+		if(err) return console.log(err);
+		done(null,filterResult)
+		});
+	};
 /*============exports function to server execution======
 */
 exports.PersonModel=Person;
@@ -131,3 +143,4 @@ exports.findEditThenSave=findEditThenSave;
 exports.findAndUpdate=findAndUpdate;
 exports.removeById=removeById;
 exports.removeManyPeople=removeManyPeople;
+exports.queryChain=queryChain;
